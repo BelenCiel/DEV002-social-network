@@ -91,7 +91,7 @@ export const register = () => {
     const emailUser = email.value;
     const passwordUser = password.value;
     registerUser(emailUser, passwordUser);
-    navigateRoutes('/WallApp');
+    navigateRoutes('/Login');
     console.log(emailUser);
   });
 

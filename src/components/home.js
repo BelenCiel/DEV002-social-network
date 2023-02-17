@@ -3,8 +3,6 @@ import { navigateRoutes } from '../main.js';
 import {
   GoogleAuthProvider,
   provider,
-  login,
-  registerUser,
   auth,
   signInWithPopup,
 } from '../lib/configFirebase.js';
@@ -14,19 +12,20 @@ export const home = () => {
 
   const imgLogo = document.createElement('img'); /* imagen del logo de la app */
 
-  const btnLogin = document.createElement('button');
-  const btnLoginGoogle = document.createElement('button'); /* inicia sesion - continue with google */
   const containerBtn = document.createElement('div'); /* div que contiene los botones */
+  const btnLogin = document.createElement('button');
+  const btnLoginGoogle = document.createElement('button'); /* continue with google */
 
-  const containerRegister = document.createElement('div');
+  const containerRegister = document.createElement('div'); /* sección de registro */
   const text = document.createElement('h3');
-  const btnRegister = document.createElement('button'); /* boton de registro */
+  const btnRegister = document.createElement('button');
 
   btnLogin.textContent = 'Iniciar sesión';
   btnLoginGoogle.textContent = 'Iniciar sesión con Google';
   text.textContent = '¿No tienes una cuenta?';
   btnRegister.textContent = 'Registrate';
 
+  /* atributos */
   divHome.setAttribute('class', 'divHome');
   imgLogo.setAttribute('class', 'imgLogo');
   btnLogin.setAttribute('class', 'btnLogin');
@@ -38,6 +37,7 @@ export const home = () => {
   text.setAttribute('class', 'texth3');
   btnRegister.setAttribute('class', 'btnRegister');
 
+  /* ejecuto navigateRoutes para cada boton */
   btnLogin.addEventListener('click', () => navigateRoutes('/Login'));
   /* btnLoginGoogle.addEventListener('click', () => navigateRoutes('/WallApp')); */
   btnRegister.addEventListener('click', () => navigateRoutes('/Register')); /* evento click para ejecutar funcion navigate. -param:pathname- */
@@ -50,13 +50,14 @@ export const home = () => {
   divHome.appendChild(containerBtn);
   divHome.appendChild(containerRegister);
 
-  btnRegister.addEventListener('click', () => {
-    registerUser();
-  });
+  /* ejecuto la función que contiene cada boton */
+  // btnRegister.addEventListener('click', () => {
+  //   registerUser();
+  // });
 
-  btnLogin.addEventListener('click', () => {
-    login();
-  });
+  // btnLogin.addEventListener('click', () => {
+  //   login();
+  // });
 
   btnLoginGoogle.addEventListener('click', () => {
     signInWithPopup(auth, provider)
@@ -76,7 +77,7 @@ export const home = () => {
         const errorCode = error.code;
         console.log(errorCode);
         const errorMessage = error.message;
-        console.log(errorMessage);
+        alert(errorMessage);
         // The email of the user's account used.
         const email = error.customData.email;
         console.log(email);
@@ -88,5 +89,3 @@ export const home = () => {
   });
   return divHome;
 };
-
-/* hola ginaaa y  hola belen y chao */
